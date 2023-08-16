@@ -20,6 +20,7 @@ CREDENTIAL = credentials('CREDENTIALS')
                         sh "terraform init -reconfigure"
                         sh "terraform init"
                         sh "terraform destroy -auto-approve"
+                        echo 'done'
                     }
                 }
             }
