@@ -8,10 +8,10 @@ pipeline {
         DOCKERHUB_ID = ('docker_id')
         DOCKERHUB_PASSWORD = credentials('dockerhub_password')
         KUBE_CONFIG = credentials('config')
-CREDENTIAL = credentials('CREDENTIALS')
+        CREDENTIAL = credentials('CREDENTIALS')
         REPOSITORY_PREFIX= "petcli"
     }
-    }
+    
     stages {
         stage("Create an EKS Cluster") {
             steps {
@@ -20,7 +20,6 @@ CREDENTIAL = credentials('CREDENTIALS')
                         sh "terraform init -reconfigure"
                         sh "terraform init"
                         sh "terraform destroy -auto-approve"
-                        echo 'done'
                     }
                 }
             }
