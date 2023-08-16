@@ -7,8 +7,6 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
         DOCKERHUB_ID = credentials('docker_id')
         DOCKERHUB_PASSWORD = credentials('dockerhub_password')
-        KUBE_CONFIG = credentials('config')
-        CREDENTIAL = credentials('CREDENTIALS')
         REPOSITORY_PREFIX= "petcli"
     }
     
