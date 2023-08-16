@@ -9,9 +9,8 @@ pipeline {
         DOCKERHUB_PASSWORD = credentials('dockerhub_password')
         REPOSITORY_PREFIX= "petcli"
     }
-    agent any
-
-        stages {
+    
+    stages {
         stage('Setup Env Variable') {
             steps {
               sh '''
@@ -20,14 +19,12 @@ pipeline {
                 '''
             }
         }
-
-    stages {
         stage("Build and Push Images") {
             steps {
               sh '''
                 ls ./scripts/ 
                 docker --version
-                sudo docker login -u $DOCKERHUB_ID -p $DOCKERHUB_PASSWORD
+                docker login -u $DOCKERHUB_ID -p $DOCKERHUB_PASSWORD
                 echo 'login succesful'
                 mvn spring-boot:build-image -Pk8s -DREPOSITORY_PREFIX=$DOCKERHUB_ID 
                 docker push $DOCKERHUB_ID/spring-petclinic-cloud-api-gateway:latest
