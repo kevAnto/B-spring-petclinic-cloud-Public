@@ -9,9 +9,19 @@ pipeline {
         DOCKERHUB_PASSWORD = credentials('dockerhub_password')
         REPOSITORY_PREFIX= "petcli"
     }
-    
+    agent any
+
+        stages {
+        stage('Setup Env Variable') {
+            steps {
+              sh '''
+                export REPOSITORY_PREFIX=$DOCKERHUB_ID
+                echo $REPOSITORY_PREFIX
+                '''
+            }
+        }
+
     stages {
-        agent any
         stage("Build and Push Images") {
             steps {
               sh '''
