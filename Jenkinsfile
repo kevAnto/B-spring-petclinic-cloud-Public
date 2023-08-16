@@ -24,6 +24,8 @@ pipeline {
               sh '''
                 ls ./scripts/ 
                 docker --version
+                echo "$DOCKERHUB_PASSWORD" | sudo docker login -u $DOCKERHUB_ID --password-stdin
+                echo 'login succesful'
                 docker login -u $DOCKERHUB_ID -p $DOCKERHUB_PASSWORD
                 echo 'login succesful'
                 mvn spring-boot:build-image -Pk8s -DREPOSITORY_PREFIX=$DOCKERHUB_ID 
