@@ -1,6 +1,5 @@
 #!/usr/bin/env groovy
 pipeline {
-    agent any
     environment {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
@@ -9,7 +8,8 @@ pipeline {
         DOCKERHUB_PASSWORD = credentials('dockerhub_password')
         REPOSITORY_PREFIX= "petcli"
     }
-    
+    agent any
+
     stages {
         stage('Setup Env Variable') {
             steps {
