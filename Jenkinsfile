@@ -17,7 +17,7 @@ pipeline {
                 ls ./scripts/ 
                 docker --version
                 sudo docker login -u kevanto -p Passer9909
-                echo 'login succesful'
+                echo 'docker login succesful'
                 mvn spring-boot:build-image -Pk8s -DREPOSITORY_PREFIX=$DOCKERHUB_ID 
                 docker push $DOCKERHUB_ID/spring-petclinic-cloud-api-gateway:latest
                 docker push $DOCKERHUB_ID/spring-petclinic-cloud-visits-service:latest
